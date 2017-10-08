@@ -1,0 +1,6 @@
+.no_tickets_submitted {
+    padding: 12px;
+    background-color: pink;
+    font-weight: bold;
+    text-align: center;
+}

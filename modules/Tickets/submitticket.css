@@ -1,0 +1,19 @@
+.ticket_elementDiv label, input {float: left}
+.ticket_elementDiv label, input[type="submit"] { clear: left }
+.ticket_elementDiv label { font-weight: bold; }
+.ticket_elementDiv input, select, textarea { padding: 10px 10px; width: 90%; margin-bottom: 24px; }
+.ticket_elementDiv label { width:70px; }
+.ticket_buttonDiv { float:right; clear: both; }
+.ticketErrorHolder {
+	padding: 6px;
+    background-color: pink;
+    font-weight: bold;
+    text-align: center;
+}
+.ticketErrorList li {
+	list-style-type: none;
+
+}
+.ticketError {
+	text-align: left;
+}
