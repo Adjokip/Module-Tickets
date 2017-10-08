@@ -59,3 +59,4 @@ define('invalid_ticket_reply_length', "Invalid Ticket Reply Length (Minimum of 4
 define('ticket_closed', "Ticket Closed");
 define('ticket_open', "Ticket Open");
 define('ticket_admin_response', "Admin Response");
+define('ticket_customer_response', "Customer Response");

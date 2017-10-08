@@ -95,19 +95,12 @@ function ticketErrors($errors) {
 }
 
 function ticketCodeToName($code, $css = false) {
-    if ($css) {
-        $codes = array(
-            'ticket_closed',
-            'ticket_open',
-            'ticket_admin_response',
-        );
-    } else {
-        $codes = array(
-            get_lang('ticket_closed'),
-            get_lang('ticket_open'),
-            get_lang('ticket_admin_response'),
-        );
-    }
-
-    return $codes[$code];
+    $codes = array(
+        'ticket_closed',
+        'ticket_open',
+        'ticket_admin_response',
+        'ticket_customer_response',
+    );
+    
+    return $css ? $codes[$code] : get_lang($codes[$code]);
 }

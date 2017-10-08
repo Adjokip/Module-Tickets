@@ -30,10 +30,10 @@ function exec_ogp_module()
         
         foreach ($tickets->list() as $t) {
             echo '<tr class="ticketRow '.ticketCodeToName($t['status'], true).'">
-	    		<td><a href="?m=Tickets&p=viewticket&tid='.$t['tid'].'&uid='.$t['uid'].'">'. htmlentities($t['subject']) .'</a></td>
-	    		<td>'. ticketCodeToName($t['status']) .'</a></td>
-	    		<td>'. $t['last_updated'] .'</a></td>
-	    	</tr>';
+                <td><a href="?m=Tickets&p=viewticket&tid='.$t['tid'].'&uid='.$t['uid'].'">'. htmlentities($t['subject']) .'</a></td>
+                <td>'. ticketCodeToName($t['status']) .'</a></td>
+                <td>'. $t['last_updated'] .'</a></td>
+            <tr>';
         }
 
         echo '</table>';

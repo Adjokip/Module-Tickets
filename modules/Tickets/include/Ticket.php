@@ -118,7 +118,7 @@ class Ticket
                     )";
 
         if ($this->db->query($query)) {
-            $this->updateStatus($tid, $uid, ($is_admin ? 2 : 1));
+            $this->updateStatus($tid, $uid, ($is_admin ? 2 : 3));
             $this->updateTimestamp($tid, $uid);
             return true;
         }
@@ -129,6 +129,7 @@ class Ticket
     // 0 = closed
     // 1 = open
     // 2 = admin response
+    // 3 = customer response
     public function updateStatus($tid, $uid, $status)
     {
         $status = (int)$status;
