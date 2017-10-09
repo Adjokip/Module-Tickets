@@ -60,3 +60,4 @@ define('ticket_closed', "Ticket Fermé");
 define('ticket_open', "Ticket Ouvert");
 define('ticket_admin_response', "Réponse Admin");
 define('ticket_customer_response', "Réponse Client");
+define('ticket_invalid_page_num', "You have attempted to view a page number with no tickets!");

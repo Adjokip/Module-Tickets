@@ -3,15 +3,16 @@
 class Ticket
 {
     private $db;
-    private $tickets;
 
     public function __construct(OGPDatabase $db)
     {
         $this->db = $db;
     }
 
-    public function tickets($ticketsFor = null)
+    public function tickets($ticketsFor = null, $page = 1, $limit = 10)
     {
+        $limitStart = ((int)($page - 1) * $limit);
+
         $query = "SELECT a.tid, a.uid, a.user_id, a.parent_id, a.subject, a.created_at, a.last_updated, a.status, a.assigned_to
                     FROM OGP_DB_PREFIXtickets a ";
 
@@ -24,24 +25,27 @@ class Ticket
             }
         }
 
-        $query .= "ORDER BY a.last_updated DESC";
-        $this->tickets = $this->db->resultQuery($query);
+        $query .= "ORDER BY a.last_updated DESC ";
+        $query .= "LIMIT $limitStart, ".(int)$limit;
 
-        return $this;
+        return $this->db->resultQuery($query);
     }
 
-    public function list()
+    public function count($ticketsFor = null)
     {
-        return $this->tickets;
-    }
+        $query = "SELECT COUNT(1) as ticketCount FROM OGP_DB_PREFIXtickets a ";
 
-    public function count()
-    {
-        if ($this->tickets === false) {
-            return 0;
+        if ($ticketsFor !== null) {
+            $query .= "WHERE a.user_id = ".(int)$ticketsFor." OR a.parent_id = ".(int)$ticketsFor." ";
+            
+            if ($this->db->isSubUser($ticketsFor)) {
+                $result = $this->db->resultQuery("SELECT users_parent FROM OGP_DB_PREFIXusers WHERE user_id = ".(int)$ticketsFor);
+                $query .= "OR a.parent_id = ".(int)$result[0]['users_parent']." ";
+            }
         }
 
-        return count($this->tickets);
+        $result = $this->db->resultQuery($query);
+        return (!is_array($result) ? 0 : $result[0]['ticketCount']);
     }
 
     public function getTicket($tid, $uid)
